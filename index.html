@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge - Encriptador de Texto</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <img class="logo" src="./assets/img/logo.png" alt="Logo Alura" />
+      </header>
+      <section class="section-encrypt">
+        <textarea
+          class="text-encrypt"
+          name="text-encrypt"
+          id="text-encrypt"
+          placeholder="Ingrese el texto aqui"
+        ></textarea>
+        <p class="warning">
+          <img
+            class="warning-icon"
+            src="./assets/img/icon-aviso.png"
+            alt="icon exclamación"
+          />
+          <span class="warning-text">Solo letras minúsculas y sin acentos</span>
+        </p>
+        <div class="buttons">
+          <button class="btn-primary" onclick="encriptar()">Encriptar</button>
+          <button class="btn-secondary" onclick="desencriptar()">
+            Desencriptar
+          </button>
+        </div>
+      </section>
+      <section class="section-message">
+        <img
+          class="img-message"
+          src="./assets/img/muñeco.png"
+          alt="Imagen muñeco"
+        />
+        <h2 class="title-message">Ningún mensaje fue encontrado</h2>
+        <p class="text-message">
+          Ingresa el texto que desees encriptar o desencriptar.
+        </p>
+        <textarea
+          class="result-message"
+          name="result-message"
+          id="result-message"
+          readonly
+        ></textarea>
+        <button class="btn-secondary" id="btn-copy" onclick="copiar()">
+          Copiar
+        </button>
+      </section>
+    </main>
+    <footer>
+      <p>Oracle One - Alura latam</p>
+      <p>Challenge realizado por José Albornoz Rocco</p>
+      <span>
+        <a
+          href="https://github.com/joche-dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="./assets/img/icon-github.svg" alt="Icon Github" /></a>
+        <a
+          href="https://www.linkedin.com/in/josealbornozr/"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="./assets/img/icon-linkedin.svg" alt="Icon Linkedin" /></a>
+      </span>
+    </footer>
+    <script src="./app.js"></script>
+  </body>
+</html>
