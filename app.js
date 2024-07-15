@@ -6,23 +6,32 @@ const imgMessage = document.querySelector('.img-message');
 const titleMessage = document.querySelector('.title-message');
 const textMessage = document.querySelector('.text-message');
 const sectionMessage = document.querySelector('.section-message');
+const warning = document.querySelector('.warning');
 
 const encriptarPatrones = [
   { original: 'e', encriptado: 'enter' },
   { original: 'i', encriptado: 'imes' },
   { original: 'a', encriptado: 'ai' },
   { original: 'o', encriptado: 'ober' },
-  { original: 'u', encriptado: 'ufat' }
+  { original: 'u', encriptado: 'ufat' },
 ];
+
+function warningError() {
+  warning.classList.add('shake');
+
+  setTimeout(function () {
+    warning.classList.remove('shake');
+  }, 1000);
+}
 
 function encriptar() {
   if (!validarTexto.test(textoEncriptar.value)) {
-    alert('texto no valido');
+    warningError();
     return;
   }
 
   let texto = textoEncriptar.value;
-  encriptarPatrones.forEach(patron => {
+  encriptarPatrones.forEach((patron) => {
     const regex = new RegExp(patron.original, 'g');
     texto = texto.replace(regex, patron.encriptado);
   });
@@ -33,12 +42,12 @@ function encriptar() {
 
 function desencriptar() {
   if (!validarTexto.test(textoEncriptar.value)) {
-    alert('texto no valido');
+    warningError();
     return;
   }
 
   let texto = textoEncriptar.value;
-  encriptarPatrones.forEach(patron => {
+  encriptarPatrones.forEach((patron) => {
     const regex = new RegExp(patron.encriptado, 'g');
     texto = texto.replace(regex, patron.original);
   });
