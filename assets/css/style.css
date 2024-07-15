@@ -176,7 +176,7 @@ footer {
   padding: 1rem;
   background-color: var(--dark-blue-300);
   color: var(--white);
-  font-size: .9rem;
+  font-size: .8rem;
 }
 
 footer a {
@@ -215,7 +215,7 @@ footer a {
   }
 
   section {
-    height: calc(100vh - 7.95rem);
+    height: calc(100vh - 8.2rem);
     margin-bottom: 0;
   }
 
