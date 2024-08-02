@@ -25,6 +25,7 @@
   --gray-500: #343a40;
   --white: #fff;
   --red: #e63946;
+  --placeholder: var(--dark-blue-300);
 }
 
 body {
@@ -72,7 +73,7 @@ textarea {
 }
 
 .text-encrypt::placeholder {
-  color: var(--dark-blue-300);
+  color: var(--placeholder);
 }
 
 .warning {
@@ -237,12 +238,14 @@ footer a {
   .img-message {
     display: block;
   }
+
+  .result-message {
+    height: 100%;
+  }
 }
 
 .shake {
   animation: shake 0.5s;
-  color: var(--red);
-  font-weight: 600;
 }
 
 @keyframes shake {

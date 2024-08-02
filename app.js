@@ -1,4 +1,5 @@
-const validarTexto = /^[a-z\s]+$/;
+// Definición de constantes
+const validarTexto = /^[a-z0-9\s]+$/;
 const textoEncriptar = document.querySelector('#text-encrypt');
 const textoEncriptado = document.querySelector('#result-message');
 const btnCopy = document.querySelector('#btn-copy');
@@ -7,6 +8,7 @@ const titleMessage = document.querySelector('.title-message');
 const textMessage = document.querySelector('.text-message');
 const sectionMessage = document.querySelector('.section-message');
 const warning = document.querySelector('.warning');
+const warningText = document.querySelector('.warning-text');
 
 const encriptarPatrones = [
   { original: 'e', encriptado: 'enter' },
@@ -16,47 +18,58 @@ const encriptarPatrones = [
   { original: 'u', encriptado: 'ufat' },
 ];
 
+// Función para mostrar advertencia de error
 function warningError() {
-  warning.classList.add('shake');
-
-  setTimeout(function () {
-    warning.classList.remove('shake');
-  }, 1000);
+  warningText.innerHTML =
+    textoEncriptar.value.trim() === ''
+      ? 'No puede estar vacío'
+      : 'Solo letras minúsculas, sin acentos y caracteres especiales';
+  warning.style.color = 'var(--red)';
+  textoEncriptar.classList.add('shake');
+  setTimeout(() => textoEncriptar.classList.remove('shake'), 1000);
 }
 
+// Función para encriptar texto
 function encriptar() {
   if (!validarTexto.test(textoEncriptar.value)) {
     warningError();
     return;
+  } else {
+    warningText.innerHTML = 'Solo letras minúsculas y sin acentos';
+    warning.style.color = 'var(--dark-blue-300)';
   }
 
-  let texto = textoEncriptar.value;
+  let textoEncriptado = textoEncriptar.value;
   encriptarPatrones.forEach((patron) => {
-    const regex = new RegExp(patron.original, 'g');
-    texto = texto.replace(regex, patron.encriptado);
+    textoEncriptado = textoEncriptado.replaceAll(patron.original, patron.encriptado);
   });
 
-  textoEncriptado.value = texto;
-  mostrarResultado();
+  mostrarResultado(textoEncriptado);
 }
 
+// Función para desencriptar texto
 function desencriptar() {
   if (!validarTexto.test(textoEncriptar.value)) {
     warningError();
     return;
+  } else {
+    warningText.innerHTML = 'Solo letras minúsculas y sin acentos';
+    warning.style.color = 'var(--dark-blue-300)';
   }
 
-  let texto = textoEncriptar.value;
+  let textoDesencriptado = textoEncriptar.value;
   encriptarPatrones.forEach((patron) => {
-    const regex = new RegExp(patron.encriptado, 'g');
-    texto = texto.replace(regex, patron.original);
+    textoDesencriptado = textoDesencriptado.replaceAll(patron.encriptado, patron.original);
   });
 
-  textoEncriptado.value = texto;
-  mostrarResultado();
+  mostrarResultado(textoDesencriptado);
 }
 
-function mostrarResultado() {
+// Función para mostrar el resultado
+function mostrarResultado(texto) {
+  textoEncriptado.value = texto;
+  textoEncriptar.value = '';
+
   textoEncriptado.style.display = 'block';
   btnCopy.style.display = 'block';
   imgMessage.style.display = 'none';
@@ -65,6 +78,7 @@ function mostrarResultado() {
   sectionMessage.style.justifyContent = 'space-between';
 }
 
+// Función para copiar texto al portapapeles
 function copiar() {
   textoEncriptado.select();
   document.execCommand('copy');
